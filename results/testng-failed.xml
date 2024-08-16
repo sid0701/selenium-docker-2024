@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="3" parallel="tests" name="Failed suite [flight-reservation-suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="3" parallel="tests" name="passenger-count-3(failed)">
+    <parameter name="testDataPath" value="test-data/flight-reservation/passenger-count-3.json"/>
+    <classes>
+      <class name="com.sidgupta.tests.flightreservation.FlightReservationTest">
+        <methods>
+          <include name="goToFlightSearchTest"/>
+          <include name="customerRegistrationTest"/>
+          <include name="selectFlightsTest"/>
+          <include name="setupParameters"/>
+          <include name="flightConfirmationTest"/>
+          <include name="tearDown"/>
+          <include name="searchFlightTest"/>
+          <include name="configSetup"/>
+          <include name="setDriver"/>
+        </methods>
+      </class> <!-- com.sidgupta.tests.flightreservation.FlightReservationTest -->
+    </classes>
+  </test> <!-- passenger-count-3(failed) -->
+  <test thread-count="3" parallel="tests" name="passenger-count-2(failed)">
+    <parameter name="testDataPath" value="test-data/flight-reservation/passenger-count-2.json"/>
+    <classes>
+      <class name="com.sidgupta.tests.flightreservation.FlightReservationTest">
+        <methods>
+          <include name="goToFlightSearchTest"/>
+          <include name="customerRegistrationTest"/>
+          <include name="selectFlightsTest"/>
+          <include name="setupParameters"/>
+          <include name="flightConfirmationTest"/>
+          <include name="tearDown"/>
+          <include name="searchFlightTest"/>
+          <include name="configSetup"/>
+          <include name="setDriver"/>
+        </methods>
+      </class> <!-- com.sidgupta.tests.flightreservation.FlightReservationTest -->
+    </classes>
+  </test> <!-- passenger-count-2(failed) -->
+  <test thread-count="3" parallel="tests" name="passenger-count-1(failed)">
+    <parameter name="testDataPath" value="test-data/flight-reservation/passenger-count-1.json"/>
+    <classes>
+      <class name="com.sidgupta.tests.flightreservation.FlightReservationTest">
+        <methods>
+          <include name="goToFlightSearchTest"/>
+          <include name="customerRegistrationTest"/>
+          <include name="selectFlightsTest"/>
+          <include name="setupParameters"/>
+          <include name="flightConfirmationTest"/>
+          <include name="tearDown"/>
+          <include name="searchFlightTest"/>
+          <include name="configSetup"/>
+          <include name="setDriver"/>
+        </methods>
+      </class> <!-- com.sidgupta.tests.flightreservation.FlightReservationTest -->
+    </classes>
+  </test> <!-- passenger-count-1(failed) -->
+</suite> <!-- Failed suite [flight-reservation-suite] -->

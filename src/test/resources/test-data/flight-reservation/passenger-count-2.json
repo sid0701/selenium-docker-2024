@@ -1,0 +1,12 @@
+{
+  "fname" : "sid",
+  "lname" : "gupta",
+  "email" : "sid123",
+  "password" : "sid123",
+  "street" : "123",
+  "city" : "Den Haag",
+  "state" : "Maine",
+  "zip" : "2566LR",
+  "price" : "$1169 USD",
+  "noOfPassengers" : "2"
+}
