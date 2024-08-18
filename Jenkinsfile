@@ -17,8 +17,8 @@ pipeline{
                 DOCKER_HUB = credentials('mydocker-credentials')
             }
             steps{
-                	bat ‘docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%’
-                	bat “docker push sid0701/docker2024”
+                	bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
+                	bat "docker push sid0701/docker2024"
 
             }
         }
