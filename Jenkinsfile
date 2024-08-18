@@ -20,10 +20,12 @@ pipeline{
             }
         }
         stage("push image"){
-            script {
+            steps{
+                script {
                 docker.withRegistry('','mydocker-credentials') {
                     app.push("latest")
                 }
+            }
             }
         }
         }
