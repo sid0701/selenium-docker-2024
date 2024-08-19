@@ -1,32 +1,33 @@
 pipeline{
-    agent any
+    agent none
 
     stages{
         stage("build jars"){
+            agent{
+                docker {
+                    image 'maven:3.9.8-eclipse-temurin-17-focal'
+                    args '-u root -v /tmp/m2:/root/.m2'
+                }
+            }
             steps{
-                bat "mvn clean package -DskipTests"
+                sh "mvn clean package -DskipTests"
             }
         }
         stage("build image"){
             steps{
-                bat "docker build -t=sid0701/docker2024 ."
+                script {
+                    app = docker.build('sid0701/docker2024')
+                }
             }
         }
         stage("push image"){
-            environment{
-                DOCKER_HUB = credentials('mydocker-credentials')
-            }
             steps{
-                	bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
-                	bat "docker push sid0701/docker2024"
-
+                script {
+                docker.withRegistry('','mydocker-credentials') {
+                    app.push("latest")
+                }
+            }
             }
         }
         }
-
-    post{
-        always{
-            bat "docker logout"
-        }
-    }
 }
