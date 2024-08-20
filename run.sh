@@ -27,4 +27,3 @@ java -cp 'libs/*' \
      org.testng.TestNG \
      -threadcount "${THREAD_COUNT:-1}" \
      test-suites/"${TEST_SUITE}"
-

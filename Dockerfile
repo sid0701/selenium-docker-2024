@@ -8,7 +8,7 @@ WORKDIR /home/mydocker
 
 #Add Files
 ADD target/docker-resources     ./
-ADD runner.sh                    runner.sh
+ADD run.sh                    run.sh
 
 #EntryPoint
-ENTRYPOINT sh runner.sh
+ENTRYPOINT sh run.sh
