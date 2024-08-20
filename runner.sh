@@ -10,7 +10,7 @@ count=0
 while [ "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready)" != "true" ]
 do
   count=$((count+1))
-  echo "Attempt : ${count})"
+  echo "Attempt : ${count}"
   if [ "$count" -ge 30 ]
   then
     echo "-----HUB was not ready within 30 seconds. Thus exiting.."
@@ -23,8 +23,8 @@ echo "Selenium Grid is up and running.."
 
 java -cp 'libs/*' \
      -Dselenium.grid.enabled=true \
-     -Dselenium.grid.hubHost=${HUB_HOST:-hub} \
-     -Dbrowser=${BROWSER:-chrome} \
+     -Dselenium.grid.hubHost="${HUB_HOST:-hub}" \
+     -Dbrowser="${BROWSER:-chrome}" \
      org.testng.TestNG \
-     -threadcount ${THREAD_COUNT:-1} \
-     test-suites/${TEST_SUITE}
+     -threadcount "${THREAD_COUNT:-1}" \
+     test-suites/"${TEST_SUITE}"
