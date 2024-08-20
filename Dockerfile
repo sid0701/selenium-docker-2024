@@ -10,5 +10,8 @@ WORKDIR /home/mydocker
 ADD target/docker-resources     ./
 ADD run.sh                    run.sh
 
+#Fix for windows
+RUN dos2unix runner.sh
+
 #EntryPoint
 ENTRYPOINT sh run.sh
