@@ -4,10 +4,9 @@ echo "BROWSER -> ${BROWSER:-chrome}"
 echo "THREAD_COUNT -> ${THREAD_COUNT:-1}"
 echo "HUB_HOST -> ${HUB_HOST:-hub}"
 echo "------------------------------------"
-
 echo "Checking if the hub is ready.."
 count=0
-while [ "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready)" != "true" ]
+while [ "$(curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready)" != "true" ]
 do
   count=$((count+1))
   echo "Attempt : ${count}"
