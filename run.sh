@@ -1,3 +1,22 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------
+#  This script expects the following environment variables
+#     HUB_HOST
+#     BROWSER
+#     THREAD_COUNT
+#     TEST_SUITE
+#-------------------------------------------------------------------
+
+# Let's print what we have received
+
+echo "---Env Variables---"
+echo "HUB_HOST = ${HUB_HOST}"
+echo "BROWSER = ${BROWSER}"
+echo "THREAD_COUNT = ${THREAD_COUNT}"
+echo "TEST_SUITE = ${TEST_SUITE}"
+echo "----------"
+
 echo "----Checking if the hub is ready---"
 count=0
 while [ "$(curl -s http://${HUB_HOST:-hub}/status | jq -r .value.ready)" != true ];
