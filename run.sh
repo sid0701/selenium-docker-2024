@@ -7,7 +7,7 @@ do
   if [ "$count" -ge 30 ];
    then
      echo "---Hub was not ready within 30 seconds. Hence, quitting..."
-     exit 1
+     exit 1;
   fi
   sleep 1
 done
