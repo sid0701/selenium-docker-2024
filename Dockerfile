@@ -1,33 +1,17 @@
-pipeline{
-    agent none
+FROM bellsoft/liberica-openjdk-alpine:21
 
-    stages{
-        stage("build jars"){
-            agent{
-                docker {
-                    image 'maven:3.9.3-eclipse-temurin-17-focal'
-                    args '-u root -v /tmp/m2:/root/.m2'
-                }
-            }
-            steps{
-                sh "mvn clean package -DskipTests"
-            }
-        }
-        stage("build image"){
-            steps{
-                script {
-                    app = docker.build('sid0701/docker2024')
-                }
-            }
-        }
-        stage("push image"){
-            steps{
-                script {
-                docker.withRegistry('','mydocker-credentials') {
-                    app.push("latest")
-                }
-            }    
-            }
-        }
-        }
-}
+#Install utilities like curl and jq
+RUN apk add curl jq
+
+#Work Directory
+WORKDIR /home/mydocker
+
+#Add Files
+ADD target/docker-resources     ./
+ADD run.sh                    run.sh
+
+#Fix for windows
+RUN dos2unix run.sh
+
+#EntryPoint
+ENTRYPOINT sh run.sh
