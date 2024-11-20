@@ -3,6 +3,9 @@ package com.sidgupta.tests;
 import com.sidgupta.listener.TestListener;
 import com.sidgupta.util.Config;
 import com.sidgupta.util.Constants;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -39,7 +42,7 @@ public class BaseTest {
     }
 
     public WebDriver getLocalDriver(){
-        WebDriverManager.chromedriver().browserVersion(Constants.BROWSER_VERSION).setup();
+        WebDriverManager.chromedriver().browserVersion(Config.get(Constants.BROWSER_VERSION)).setup();
         return new ChromeDriver();
     }
 

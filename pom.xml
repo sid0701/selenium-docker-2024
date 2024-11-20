@@ -14,6 +14,7 @@
         <webdriver.manager.version>5.7.0</webdriver.manager.version>
         <testng.version>7.9.0</testng.version>
         <jackson.version>2.16.1</jackson.version>
+        <cucumber.version>7.18.1</cucumber.version>
         <!-- plugins versions -->
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven.dependency.version>3.6.0</maven.dependency.version>
@@ -57,6 +58,19 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>selenium-docker</finalName>
@@ -75,17 +89,32 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
+<!--                <configuration>-->
+<!--                    <systemPropertyVariables>-->
+<!--                        <browser>firefox</browser>-->
+<!--                        <selenium.grid.enabled>true</selenium.grid.enabled>-->
+<!--                    </systemPropertyVariables>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <file>src/test/resources/test-suites/flight-reservation.xml</file>-->
+<!--                        <file>src/test/resources/test-suites/vendor-app.xml</file>-->
+<!--                    </suiteXmlFiles>-->
+<!--                    <threadCount>4</threadCount>-->
+<!--                    <reportsDirectory>target/test-output</reportsDirectory>-->
+<!--                </configuration>-->
                 <configuration>
                     <systemPropertyVariables>
-                        <browser>firefox</browser>
-                        <selenium.grid.enabled>true</selenium.grid.enabled>
+                        <browser>chrome</browser>
+                        <selenium.grid.enabled>false</selenium.grid.enabled>
                     </systemPropertyVariables>
-                    <suiteXmlFiles>
-                        <file>src/test/resources/test-suites/flight-reservation.xml</file>
-                        <file>src/test/resources/test-suites/vendor-app.xml</file>
-                    </suiteXmlFiles>
-                    <threadCount>4</threadCount>
-                    <reportsDirectory>target/test-output</reportsDirectory>
+                    <properties>
+                        <property>
+                            <name>dataproviderthreadcount</name>
+                            <value>3</value>
+                        </property>
+                    </properties>
+                    <includes>
+                        <include>com.sidgupta.CucumberRunner</include>
+                    </includes>
                 </configuration>
             </plugin>
             <!-- To copy all the dependencies to run our tests as part of "mvn package" -->
@@ -144,6 +173,9 @@
                             <resources>
                                 <resource>
                                     <directory>src/test/resources</directory>
+                                </resource>
+                                <resource>
+                                    <directory>./Results</directory>
                                 </resource>
                             </resources>
                         </configuration>
